@@ -8,8 +8,22 @@
 
 #import "TimelineViewController.h"
 #import "APIManager.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "Tweet.h"
 
 @interface TimelineViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *aviView;
+@property (weak, nonatomic) IBOutlet UILabel *displayNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *handleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tweetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *replyCount;
+@property (weak, nonatomic) IBOutlet UILabel *retweetCount;
+@property (weak, nonatomic) IBOutlet UILabel *favoriteCount;
+
+@property (strong, nonatomic) NSArray *arrayOfTweets;
+
 
 @end
 
@@ -20,16 +34,21 @@
 
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+    
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
+            self.arrayOfTweets = tweets;
             for (NSDictionary *dictionary in tweets) {
                 NSString *text = dictionary[@"text"];
                 NSLog(@"%@", text);
             }
+            self.arrayOfTweets = tweets;
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +56,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+- (void)logOut {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    
+    [[APIManager shared] logout];
+}
 /*
 #pragma mark - Navigation
 
