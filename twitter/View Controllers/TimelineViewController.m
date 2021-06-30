@@ -16,8 +16,8 @@
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (strong, nonatomic) NSArray *tweets;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 
 
@@ -26,16 +26,24 @@
 @implementation TimelineViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     //self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    [super viewDidLoad];
 
     // Get timeline
-    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+    [self fetchTweets];
+    [self.refreshControl endRefreshing];
     
+    [refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:refreshControl atIndex:0];
+    
+}
+- (void)fetchTweets {
+    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             self.tweets = tweets;
@@ -44,8 +52,10 @@
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
-    
-    
+    // Tell the refreshControl to stop spinning
+    [self.refreshControl endRefreshing];
+    //[self.loadIndicator stopAnimating];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,11 +86,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
-    
-    
-    cell.Tweet = self.tweets[indexPath.row];
-    
-    
+    cell.tweet = self.tweets[indexPath.row];
     
     return cell;
 }
@@ -88,5 +94,6 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.tweets.count;
 }
+
 
 @end
