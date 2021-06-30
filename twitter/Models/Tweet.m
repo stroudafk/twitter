@@ -51,6 +51,7 @@
      return self;
  }
 
+// Converint array of tweet dictionaries to Arrray of Tweet Models
 + (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries{
     NSMutableArray *tweets = [NSMutableArray array];
     for (NSDictionary *dictionary in dictionaries) {
