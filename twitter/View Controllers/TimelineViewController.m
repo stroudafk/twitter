@@ -53,7 +53,7 @@
     // Tell the refreshControl to stop spinning
     [self.refreshControl endRefreshing];
     //[self.loadIndicator stopAnimating];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
