@@ -96,6 +96,7 @@
         self.tweet.retweeted = NO;
         self.tweet.retweetCount -= 1;
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+        self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
         
         [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
             if(error){
@@ -111,6 +112,7 @@
         self.tweet.retweeted = YES;
         self.tweet.retweetCount += 1;
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+        self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
         
         [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
             if(error){
