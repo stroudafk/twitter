@@ -135,31 +135,37 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcL-1l-k01">
                                                     <rect key="frame" x="230" y="120" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button" image="favor-icon"/>
+                                                    <state key="normal" title="Favorite Button" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapFavorite:" destination="GQQ-g8-Np3" eventType="touchUpInside" id="Roh-rO-U5h"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ug-uf-pFh">
                                                     <rect key="frame" x="153" y="122" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button" image="retweet-icon"/>
+                                                    <state key="normal" title="Retweet Button" image="retweet-icon"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGq-aE-cHy">
                                                     <rect key="frame" x="95" y="122" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button" image="reply-icon"/>
+                                                    <state key="normal" title="Reply Button" image="reply-icon"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiU-fT-pUN">
                                                     <rect key="frame" x="304" y="124" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button" image="message-icon"/>
+                                                    <state key="normal" title="Messgae Button" image="message-icon"/>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="aviView" destination="xPA-Q1-cqh" id="aBi-V2-Rux"/>
                                             <outlet property="displayNameLabel" destination="3ew-i5-45D" id="Zmg-23-b92"/>
+                                            <outlet property="favoriteButton" destination="pcL-1l-k01" id="X7l-Ak-o8b"/>
                                             <outlet property="favoriteCountLabel" destination="oaB-sr-bdQ" id="gA5-dl-xG6"/>
                                             <outlet property="handleLabel" destination="y3B-lc-xuV" id="a1n-cI-Psj"/>
+                                            <outlet property="replyButton" destination="aGq-aE-cHy" id="tdL-51-Hpe"/>
                                             <outlet property="replyCountLabel" destination="1ur-lG-fzl" id="WOz-6v-cgO"/>
+                                            <outlet property="retweetButton" destination="7Ug-uf-pFh" id="EMh-04-2NN"/>
                                             <outlet property="retweetCountLabel" destination="ZCg-l6-SK0" id="Iry-Qg-NZ6"/>
                                             <outlet property="tweetLabel" destination="KTl-Dh-10K" id="jFQ-9u-Qzz"/>
                                         </connections>
@@ -172,6 +178,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home Timeline" id="MOc-fV-EZE">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="0xQ-MB-eu1">
+                            <color key="tintColor" red="0.1408048868" green="0.66785556079999997" blue="0.93514090780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="logOut:" destination="Lbl-k5-U4i" id="sxh-SI-HJk"/>
                             </connections>
@@ -249,11 +256,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ohw-7S-FYh">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="peL-OP-Qo9">
+                            <color key="tintColor" red="0.1408048868" green="0.66785556079999997" blue="0.93514090780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="cancelTweet:" destination="0Sq-4K-6T5" id="VNI-mF-4O3"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tweet" id="6j0-La-q8i">
+                            <color key="tintColor" red="0.1408048868" green="0.66785556079999997" blue="0.93514090780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="sendTweet:" destination="0Sq-4K-6T5" id="jbP-OT-Jnm"/>
                             </connections>
