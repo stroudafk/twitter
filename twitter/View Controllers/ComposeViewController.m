@@ -29,7 +29,6 @@
         }
     }];
     
-    //[self postStatusWithText:tweetContents completion:(void (^)(Tweet *tweet, NSError *error))completion];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
