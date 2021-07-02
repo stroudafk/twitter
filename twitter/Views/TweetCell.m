@@ -15,7 +15,6 @@
 @implementation TweetCell
 
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -31,6 +30,7 @@
 -(void)setTweet:(Tweet *)tweet{
     //tweet is set -> update all labels
     _tweet = tweet;
+
     
     self.tweetLabel.text = tweet.text;
     self.displayNameLabel.text = tweet.user.name;
@@ -52,8 +52,6 @@
     else {
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
     }
-    
-    //set bools of highlighted buttons or not
 }
 
 - (IBAction)didTapFavorite:(id)sender {

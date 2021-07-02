@@ -13,6 +13,8 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "ComposeViewController.h"
+#import "DetailsViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -27,20 +29,22 @@
     [super viewDidLoad];
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
 
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     //self.tableView.rowHeight = UITableViewAutomaticDimension;
 
+    
+    
     // Get timeline
     [self fetchTweets];
-    [self.refreshControl endRefreshing];
     
     [refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     
+    
 }
 - (void)fetchTweets {
+    
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
@@ -52,7 +56,6 @@
     }];
     // Tell the refreshControl to stop spinning
     [self.refreshControl endRefreshing];
-    //[self.loadIndicator stopAnimating];
     
 }
 
@@ -77,10 +80,22 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController *)navigationController.topViewController;
-    composeController.delegate = self;
+
+    if([segue.identifier isEqual:@"TweetSegue"]){
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController *)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+    else if([segue.identifier isEqual:@"TweetDetailSegue"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        
+        UINavigationController *navigationController = [segue destinationViewController];
+        Tweet *tweetDetails = self.tweets[indexPath.row];
+        //DetailsViewController *detailsViewController = (DetailsViewController *)navigationController.topViewController;
+        DetailsViewController *detailsViewController = (DetailsViewController *)navigationController.childViewControllers.firstObject;
+        detailsViewController.detailTweet = tweetDetails;
+    }
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -88,6 +103,13 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
     cell.tweet = self.tweets[indexPath.row];
+    
+    if(cell.tweet.user.profilePicture != nil){
+        
+        NSURL *aviURL = [NSURL URLWithString:cell.tweet.user.profilePicture];
+        
+        [cell.aviView setImageWithURL:aviURL];
+    }
     
     return cell;
 }
