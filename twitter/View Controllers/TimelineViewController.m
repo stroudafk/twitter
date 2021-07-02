@@ -94,7 +94,7 @@
         Tweet *tweetDetails = self.tweets[indexPath.row];
         //DetailsViewController *detailsViewController = (DetailsViewController *)navigationController.topViewController;
         DetailsViewController *detailsViewController = (DetailsViewController *)navigationController.childViewControllers.firstObject;
-        detailsViewController.detailTweet = tweetDetails;
+        detailsViewController.tweet = tweetDetails;
     }
 }
 

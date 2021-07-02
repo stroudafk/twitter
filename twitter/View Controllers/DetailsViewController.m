@@ -11,6 +11,7 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "APIManager.h"
+#import "DateTools.h"
 
 
 @interface DetailsViewController ()
@@ -31,8 +32,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSURL *aviURL = [NSURL URLWithString:self.detailTweet.user.profilePicture];
+    NSURL *aviURL = [NSURL URLWithString:self.tweet.user.profilePicture];
     [self.aviView setImageWithURL:aviURL];
+    
+    self.displayNameLabel.text = self.tweet.user.name;
+    self.handleLabel.text = self.tweet.user.screenName;
+    self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
+    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
+    self.tweetLabel.text = self.tweet.text;
+    
+    self.timestampLabel.text = [NSString stringWithFormat:@"%@", self.tweet.createdAtDate];
+    
     // Do any additional setup after loading the view.
 }
 

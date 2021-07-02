@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsViewController : UIViewController
 
-@property (strong, nonatomic) Tweet *detailTweet;
+@property (strong, nonatomic) Tweet *tweet;
 
 
 @end
