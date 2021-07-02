@@ -365,6 +365,30 @@
                                 <color key="textColor" red="0.67888659240000004" green="0.71723526719999997" blue="0.73725885150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yv3-fL-Aba">
+                                <rect key="frame" x="234" y="332" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="0eJ-yc-uDS"/>
+                                    <constraint firstAttribute="height" constant="25" id="lsM-6p-IBQ"/>
+                                    <constraint firstAttribute="width" constant="25" id="tzU-hf-1vr"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="uAx-LA-37e"/>
+                                </constraints>
+                                <state key="normal" title="Favorite Button" image="favor-icon"/>
+                                <connections>
+                                    <action selector="didTapFavorite:" destination="aXv-G5-AC3" eventType="touchUpInside" id="Nus-dM-y67"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4e-7o-ssv">
+                                <rect key="frame" x="123" y="332" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="heV-P7-PkO"/>
+                                    <constraint firstAttribute="width" constant="25" id="j9a-qN-5Vv"/>
+                                </constraints>
+                                <state key="normal" title="Retweet Button" image="retweet-icon"/>
+                                <connections>
+                                    <action selector="didTapRetweet:" destination="aXv-G5-AC3" eventType="touchUpInside" id="dsI-hu-pOR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xYd-ua-O06"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -372,8 +396,11 @@
                             <constraint firstItem="DvB-1Y-Rze" firstAttribute="centerY" secondItem="kPX-Ul-vrw" secondAttribute="centerY" id="0Rn-bU-ufE"/>
                             <constraint firstItem="bWG-CT-JE6" firstAttribute="top" secondItem="xM9-cL-ph1" secondAttribute="bottom" constant="20" id="Dsi-rn-zn3"/>
                             <constraint firstItem="87Y-AM-l9n" firstAttribute="leading" secondItem="CEa-ya-TgA" secondAttribute="leading" id="FCQ-iK-lcW"/>
+                            <constraint firstItem="O4e-7o-ssv" firstAttribute="leading" secondItem="xYd-ua-O06" secondAttribute="leading" constant="123" id="FjK-6p-Ajg"/>
                             <constraint firstItem="xw3-vK-f9g" firstAttribute="centerY" secondItem="bWG-CT-JE6" secondAttribute="centerY" id="GxA-QQ-Fun"/>
+                            <constraint firstItem="O4e-7o-ssv" firstAttribute="top" secondItem="xw3-vK-f9g" secondAttribute="bottom" constant="17.670000000000002" id="Hhc-lG-bOz"/>
                             <constraint firstItem="bWG-CT-JE6" firstAttribute="leading" secondItem="xM9-cL-ph1" secondAttribute="leading" id="Ln1-BD-IGG"/>
+                            <constraint firstItem="xYd-ua-O06" firstAttribute="trailing" secondItem="yv3-fL-Aba" secondAttribute="trailing" constant="131" id="MMX-Ha-jjh"/>
                             <constraint firstItem="CyK-2U-Blv" firstAttribute="top" secondItem="FSj-CK-jdF" secondAttribute="bottom" constant="8" symbolic="YES" id="N7M-a4-AeK"/>
                             <constraint firstItem="CEa-ya-TgA" firstAttribute="leading" secondItem="FSj-CK-jdF" secondAttribute="trailing" constant="8" symbolic="YES" id="RZp-0T-mC0"/>
                             <constraint firstItem="kPX-Ul-vrw" firstAttribute="leading" secondItem="xw3-vK-f9g" secondAttribute="trailing" constant="30" id="Ra3-Gu-2Rx"/>
@@ -386,16 +413,21 @@
                             <constraint firstItem="CyK-2U-Blv" firstAttribute="leading" secondItem="FSj-CK-jdF" secondAttribute="leading" id="Zgk-yC-qFr"/>
                             <constraint firstItem="CEa-ya-TgA" firstAttribute="top" secondItem="FSj-CK-jdF" secondAttribute="top" id="eXX-R2-jPJ"/>
                             <constraint firstItem="FSj-CK-jdF" firstAttribute="top" secondItem="xYd-ua-O06" secondAttribute="top" constant="12" id="iON-mS-DGG"/>
+                            <constraint firstItem="yv3-fL-Aba" firstAttribute="top" secondItem="kPX-Ul-vrw" secondAttribute="bottom" constant="17.670000000000002" id="mUG-fJ-rUV"/>
+                            <constraint firstItem="yv3-fL-Aba" firstAttribute="leading" secondItem="O4e-7o-ssv" secondAttribute="trailing" constant="86" id="pVn-Y7-gm5"/>
                             <constraint firstItem="xM9-cL-ph1" firstAttribute="top" secondItem="CyK-2U-Blv" secondAttribute="bottom" constant="20" id="qPT-5n-4eO"/>
                             <constraint firstItem="kPX-Ul-vrw" firstAttribute="centerY" secondItem="xw3-vK-f9g" secondAttribute="centerY" id="r9k-gt-iRh"/>
+                            <constraint firstItem="yv3-fL-Aba" firstAttribute="leading" secondItem="O4e-7o-ssv" secondAttribute="trailing" constant="86" id="utm-Sn-b7E"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2zy-LF-9vK"/>
                     <connections>
                         <outlet property="aviView" destination="FSj-CK-jdF" id="kup-N8-HBD"/>
                         <outlet property="displayNameLabel" destination="CEa-ya-TgA" id="PLO-Fq-cFO"/>
+                        <outlet property="favoriteButton" destination="yv3-fL-Aba" id="QHB-9T-jFp"/>
                         <outlet property="favoriteCountLabel" destination="kPX-Ul-vrw" id="KIG-u2-sfd"/>
                         <outlet property="handleLabel" destination="87Y-AM-l9n" id="rPQ-Fb-E2K"/>
+                        <outlet property="retweetButton" destination="O4e-7o-ssv" id="RMv-Np-RLz"/>
                         <outlet property="retweetCountLabel" destination="bWG-CT-JE6" id="eCP-Bp-9Hc"/>
                         <outlet property="timestampLabel" destination="xM9-cL-ph1" id="zWt-kD-qW3"/>
                         <outlet property="tweetLabel" destination="CyK-2U-Blv" id="ku9-xq-ZfD"/>
