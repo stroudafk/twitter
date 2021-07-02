@@ -217,6 +217,7 @@
                                             <outlet property="replyCountLabel" destination="1ur-lG-fzl" id="WOz-6v-cgO"/>
                                             <outlet property="retweetButton" destination="7Ug-uf-pFh" id="EMh-04-2NN"/>
                                             <outlet property="retweetCountLabel" destination="ZCg-l6-SK0" id="Iry-Qg-NZ6"/>
+                                            <outlet property="timeAgoLabel" destination="nZ0-wV-TUH" id="H2S-eO-uS5"/>
                                             <outlet property="tweetLabel" destination="KTl-Dh-10K" id="jFQ-9u-Qzz"/>
                                         </connections>
                                     </tableViewCell>

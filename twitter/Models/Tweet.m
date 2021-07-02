@@ -43,15 +43,14 @@
          // Convert String to Date
          NSDate *date = [formatter dateFromString:createdAtOriginalString];
          // Configure output format
-         formatter.dateStyle = NSDateFormatterShortStyle;
-         formatter.timeStyle = NSDateFormatterNoStyle;
+         
          // Convert Date to String
-         self.createdAtString = [formatter stringFromDate:date];
+         self.createdAtDate = date;
      }
      return self;
  }
 
-// Converint array of tweet dictionaries to Arrray of Tweet Models
+// Convering array of tweet dictionaries to Arrray of Tweet Models
 + (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries{
     NSMutableArray *tweets = [NSMutableArray array];
     for (NSDictionary *dictionary in dictionaries) {

@@ -10,6 +10,7 @@
 #import "APIManager.h"
 #import "Tweet.h"
 #import "User.h"
+#import "DateTools.h"
 
 @implementation TweetCell
 
@@ -36,6 +37,7 @@
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
+    self.timeAgoLabel.text = [NSString stringWithFormat:@"%@", tweet.createdAtDate.shortTimeAgoSinceNow];
     
     if (self.tweet.favorited){
         [self.favoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
@@ -116,10 +118,10 @@
         
         [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
             if(error){
-                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+                NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
             }
             else{
-                NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+                NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
             }
         }];
     }
